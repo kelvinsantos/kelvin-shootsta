@@ -1,0 +1,182 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+			"version": "1.0.0",
+			"title": "Streaming Video Platform",
+			"description": "Streaming Video Platform",
+			"license": {
+					"name": "MIT",
+					"url": "https://opensource.org/licenses/MIT"
+			}
+	},
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+			"application/json"
+	],
+	"paths": {
+		"/api/videos/list": {
+			"get": {
+				"summary": "Get all videos from bucket",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/GetVideosFromBucketResponseDefinition"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Failed. Something went wrong."
+					}
+				}
+			}
+		},
+		"/api/videos/list-from-db": {
+			"get": {
+				"summary": "Get all videos from database",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/GetVideosFromDBResponseDefinition"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Failed. Something went wrong."
+					}
+				}
+			}
+		},
+		"/api/videos/upload": {
+			"post": {
+				"summary": "Upload a video to bucket and save the key on database",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/definitions/UploadVideoRequestDefinition"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "OK",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/definitions/UploadVideoResponseDefinition"
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Failed. Something went wrong."
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"_id": {
+			"properties": {
+					"uuid": {
+							"type": "string"
+					}
+			}
+		},
+		"GetVideosFromBucketResponseDefinition": {
+			"type": "object",
+				"properties": {
+					"Key": {
+						"type": "string"
+					},
+					"LastModified": {
+						"type": "string"
+					},
+					"ETag": {
+						"type": "string"
+					},
+					"Size": {
+						"type": "integer"
+					},
+					"StorageClass": {
+						"type": "string"
+					}
+				}
+		},
+		"GetVideosFromDBResponseDefinition": {
+				"type": "object",
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"key": {
+						"type": "string"
+					},
+					"etag": {
+						"type": "string"
+					},
+					"thumbnail": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					},
+					"__v": {
+						"type": "integer"
+					}
+				}
+		},
+		"UploadVideoRequestDefinition": {
+			"type": "object",
+			"properties": {
+				"file": {
+					"type": "string"
+				},
+				"thumbnail": {
+					"type": "string"
+				}
+			}
+		},
+		"UploadVideoResponseDefinition": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"key": {
+					"type": "string"
+				},
+				"etag": {
+					"type": "string"
+				},
+				"thumbnail": {
+					"type": "string"
+				},
+				"createdAt": {
+					"type": "string"
+				},
+				"updatedAt": {
+					"type": "string"
+				},
+				"__v": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

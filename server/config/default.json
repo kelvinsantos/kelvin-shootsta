@@ -1,0 +1,30 @@
+{
+  "server": {
+    "port": 3001
+  },
+  "mongo": {
+    "host": "localhost",
+    "databaseName": "shootsta"
+  },
+  "log4js": {
+    "appenders": {
+      "default": { "type": "file", "filename": "./logs/info.log" },
+      "debug": { "type": "file", "filename": "./logs/debug.log" },
+      "error": { "type": "file", "filename": "./logs/error.log" }
+    },
+    "categories": {
+      "default": { "appenders": ["default"], "level": "info" },
+      "debug": { "appenders": ["debug"], "level": "debug" },
+      "error": { "appenders": ["error"], "level": "error" }
+    }
+  },
+  "thirdPartyApi": {
+    "github": {
+      "githubApiBaseUrl": "https://api.github.com"
+    }
+  },
+  "aws": {
+    "accessKeyId": "",
+    "secretAccessKey": ""
+  }
+}

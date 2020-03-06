@@ -1,0 +1,12 @@
+server/dist
+server/logs
+server/mongo-backup
+server/mongo-data
+server/node_modules
+server/public
+
+ui/node_modules
+ui/out
+
+ui-vue/dist
+ui-vue/node_modules
